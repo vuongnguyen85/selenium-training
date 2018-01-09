@@ -70,8 +70,6 @@ public class SkyscannerComponents extends Utility {
     }
 
 
-    //
-    //
 
     public String findMonthString(String departureDate) {
         String month = departureDate.substring(3, 5);

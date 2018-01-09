@@ -23,7 +23,7 @@ public class Utility {
     }
 
     public static WebElement findElement(String path) {
-        if ((path.contains("@") && (path.contains("*")))) {
+        if (path.contains(".//")) {
             return firefoxBrowser.findElement(By.xpath(path));
         } else {
             return firefoxBrowser.findElement(By.cssSelector(path));
