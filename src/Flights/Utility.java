@@ -8,44 +8,47 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class Utility {
+    public static long startTime;
     public static WebDriver firefoxBrowser = new FirefoxDriver();
 
-    public static void loadFirefox(String url) {
+    public void calculateScriptDuration() {
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
+        System.out.println(totalTime + " milliseconds taken to complete script");
+    }
+
+    public static void openFirefoxBrowser(String url) {
+        startTime = System.currentTimeMillis();
         firefoxBrowser.get(url);
     }
 
-    public static WebElement findByCSS(String cssString) {
-        return firefoxBrowser.findElement(By.cssSelector(cssString));
+    public static WebElement findElement(String path) {
+        if ((path.contains("@") && (path.contains("*")))) {
+            return firefoxBrowser.findElement(By.xpath(path));
+        } else {
+            return firefoxBrowser.findElement(By.cssSelector(path));
+        }
     }
 
-    public static void clickCss(String cssString) {
-        findByCSS(cssString).click();
+    public static void clickElement(String path) {
+        findElement(path).click();
     }
 
-    public static void enterText(String cssString, String textEntry) {
-        findByCSS(cssString).sendKeys(textEntry);
+    public static void pressEnter(String path) {
+        findElement(path).sendKeys(Keys.ENTER);
     }
 
-    public static void clearTextOrigin(String cssString) {
-        findByCSS(cssString).clear();
+    public static void clearText(String path) {
+        findElement(path).clear();
     }
 
+    public static void enterText(String path, String textEntry) {
+        findElement(path).sendKeys(textEntry);
+    }
 
     public static void noOfTravellersExp(int number) {
         Select s = new Select(firefoxBrowser.findElement(By.id("flight-adults-hp-flight")));
         String s1 = Integer.toString(number);
         s.selectByValue(s1);
-    }
-
-    private static WebElement findByXpath(String xpathString) {
-        return firefoxBrowser.findElement(By.xpath(xpathString));
-    }
-
-    public static void clickXpath(String xpath) {
-        findByXpath(xpath).click();
-    }
-
-    public static void pressEnterXpath(String xpath) {
-        findByXpath(xpath).sendKeys(Keys.ENTER);
     }
 }

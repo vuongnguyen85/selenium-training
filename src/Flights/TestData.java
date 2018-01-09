@@ -12,6 +12,7 @@ public class TestData {
     public class ExpediaData {
             public static final String xPathfirstOptionDestination = "(.//*[@id='aria-option-0'])[1]/parent::li";
             public static final String xPathfirstOptionDeparture = ".//*[@id='aria-option-0']/parent::li";
+
             public static final String cssFlightTab = "#tab-flight-tab-hp";
             public static final String cssDepatureDate = "#flight-departing-hp-flight";
             public static final String cssReturnDate = "#flight-returning-hp-flight";

@@ -8,12 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SkyscannerComponents extends Utility {
-    public void openBrowser() {
-        Utility.loadFirefox("http://skyscanner.net");
-    }
-
     public void clearOriginCityTextField() {
-        findByCSS(TestData.SkyScannerData.cssOrigin).clear();
+        findElement(TestData.SkyScannerData.cssOrigin).clear();
     }
 
     public void enterOriginCityInTextField() {
@@ -21,7 +17,7 @@ public class SkyscannerComponents extends Utility {
     }
 
     public void selectOriginCityInDropdown() {
-        clickXpath("(.//*[@class='tt-dropdown-menu'])[1]/div/span/div/p");
+        clickElement("(.//*[@class='tt-dropdown-menu'])[1]/div/span/div/p");
     }
 
     public void enterDestinationCityInTextField() {
@@ -29,19 +25,19 @@ public class SkyscannerComponents extends Utility {
     }
 
     public void selectDestinationCityInDropdown() {
-        clickXpath("(.//*[@class='tt-dropdown-menu'])[2]/div/span/div/p");
+        clickElement("(.//*[@class='tt-dropdown-menu'])[2]/div/span/div/p");
     }
 
     public void clickDepartureDateTextField() {
-        clickCss(TestData.SkyScannerData.cssDepartureDate);
+        clickElement(TestData.SkyScannerData.cssDepartureDate);
     }
 
     public void selectDepartureDateOnCalendar() throws ParseException {
-        clickXpath(CalendarDateDeptXpath(TestData.TripDetails.departureDate));
+        clickElement(CalendarDateDeptXpath(TestData.TripDetails.departureDate));
     }
 
     public void clickReturnDateTextField() {
-        clickCss("#js-return-input");
+        clickElement("#js-return-input");
     }
 
     public void selectMonthForReturnDate() throws ParseException {
@@ -49,15 +45,15 @@ public class SkyscannerComponents extends Utility {
     }
 
     public void selectReturnDateOnCalendar(String deptMonth) throws ParseException {
-        clickXpath(CalendarDateRetXpath(TestData.TripDetails.returnDate, deptMonth));
+        clickElement(CalendarDateRetXpath(TestData.TripDetails.returnDate, deptMonth));
     }
 
     public void clickSearch() {
-        clickCss("[class='fss-bpk-button fss-bpk-button--large js-search-button']");
+        clickElement("[class='fss-bpk-button fss-bpk-button--large js-search-button']");
     }
 
     public void clearAllAirlineFilters() {
-        clickCss("[class='clear-all']");
+        clickElement("[class='clear-all']");
     }
 
     public void filterByAirline(String airline) {
@@ -65,10 +61,10 @@ public class SkyscannerComponents extends Utility {
 
         switch (LCAirline) {
             case "emirates":
-                clickXpath(".//*[@data-id='-32348']/label/input");
+                clickElement(".//*[@data-id='-32348']/label/input");
                 break;
             case "qatar":
-                clickXpath(".//*[@data-id='-31939']/label/input");
+                clickElement(".//*[@data-id='-31939']/label/input");
                 break;
         }
     }
@@ -93,7 +89,7 @@ public class SkyscannerComponents extends Utility {
             if (!(currentMonth.contains(monthString))) {
                 //click("button[class='next']");
 
-                Utility.clickXpath(".//*[@class='calendar-info-bar datepicker_clearfix']/button[2]");
+                Utility.clickElement(".//*[@class='calendar-info-bar datepicker_clearfix']/button[2]");
                 i++;
             }
         }
@@ -111,7 +107,7 @@ public class SkyscannerComponents extends Utility {
                 if (!(newCurrentMonth.contains(monthString))) {
                     //click("button[class='next']");
 
-                    Utility.clickXpath("(.//*[@class='calendar-info-bar datepicker_clearfix'])[2]/button[2]");
+                    Utility.clickElement("(.//*[@class='calendar-info-bar datepicker_clearfix'])[2]/button[2]");
                     i++;
                 }
             }
