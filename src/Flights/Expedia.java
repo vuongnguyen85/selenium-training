@@ -17,12 +17,10 @@ public class Expedia extends TestData {
         Actions a = new Actions(Utility.firefoxBrowser);
         Utility.clickElement(ExpediaData.cssFlightTab);
 
-        Utility.noOfTravellersExp(2);
+        Utility.noOfTravellersExp(TripDetails.noOfAdults);
 
         Utility.enterText(ExpediaData.cssOrigin,TripDetails.originCity);
         //a.moveToElement(firefoxBrowser.findElement(By.cssSelector("#flight-origin-hp-flight"))).click().keyDown(Keys.SHIFT).sendKeys("t").build().perform(); //click into box and sendkeys while holding shift
-
-        //Thread.sleep(1000L); //wait for 1 second
 
         //a.doubleClick(findByXpath(ExpediaData.xPathfirstOptionDeparture));
         Utility.clickElement(ExpediaData.xPathfirstOptionDeparture);
@@ -44,13 +42,11 @@ public class Expedia extends TestData {
         Utility.clickElement(ExpediaData.cssCloseDates);
         Utility.clickElement(ExpediaData.cssSubmit);
 
-        WebDriverWait d=new WebDriverWait(Utility.firefoxBrowser,15); //explicit wait
+        WebDriverWait d=new WebDriverWait(Utility.firefoxBrowser,25); //explicit wait
         d.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#airlineRowContainer_EK"))); //waiting until the element is clickable using locator
         //d.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#airlineRowContainer_EK"))); //waiting until the element is visible using locator
         Utility.clickElement("#airlineToggleLink");
-        Thread.sleep(2000l);
         Utility.clickElement(ExpediaData.cssEmiratesFilter);
-        Thread.sleep(2000l);
         Utility.clickElement("#Qatar-Airways-flights-checkbox");
 
         long endTime   = System.currentTimeMillis();
@@ -58,10 +54,4 @@ public class Expedia extends TestData {
         System.out.println(totalTime + " milliseconds taken to complete script");
 
         }
-
-
-
-
-
-
 }

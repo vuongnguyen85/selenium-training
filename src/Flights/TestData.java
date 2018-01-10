@@ -7,12 +7,13 @@ public class TestData {
         public static final String destinationCity = "hong kong";
         public static final String departureDate = "07/07/2018";
         public static final String returnDate = "22/07/2018";
+        public static final int noOfAdults = 3; // can't be 0, default selects 1
+        public static final int noOfChildrens = 0;
         }
 
     public class ExpediaData {
             public static final String xPathfirstOptionDestination = "(.//*[@id='aria-option-0'])[1]/parent::li";
             public static final String xPathfirstOptionDeparture = ".//*[@id='aria-option-0']/parent::li";
-
             public static final String cssFlightTab = "#tab-flight-tab-hp";
             public static final String cssDepatureDate = "#flight-departing-hp-flight";
             public static final String cssReturnDate = "#flight-returning-hp-flight";
@@ -27,6 +28,8 @@ public class TestData {
         public static final String cssOrigin = "#js-origin-input";
         public static final String cssDestination = "#js-destination-input";
         public static final String cssDepartureDate = "#js-depart-input";
+        public static final String cssTravellers = "#js-trad-cabin-class-travellers-toggle";
+
     }
 }
 

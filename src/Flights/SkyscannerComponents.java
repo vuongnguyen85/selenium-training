@@ -8,6 +8,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SkyscannerComponents extends Utility {
+
+    String deptMonthString = findMonthString(TestData.TripDetails.departureDate);
+    String returnMonthString = findMonthString(TestData.TripDetails.returnDate);
+
+    public void selectNoOfPassengers() {
+
+        clickElement(TestData.SkyScannerData.cssTravellers);
+        int i = TestData.TripDetails.noOfAdults;
+        for (int j=1;j<=i-1;j++) {
+            clickElement("[class='increment adults']");
+        }
+        clickElement(TestData.SkyScannerData.cssTravellers);
+    }
+
     public void clearOriginCityTextField() {
         findElement(TestData.SkyScannerData.cssOrigin).clear();
     }
@@ -44,8 +58,8 @@ public class SkyscannerComponents extends Utility {
         selectMonthRet("(.//*[@class='current'])[2]");
     }
 
-    public void selectReturnDateOnCalendar(String deptMonth) throws ParseException {
-        clickElement(CalendarDateRetXpath(TestData.TripDetails.returnDate, deptMonth));
+    public void selectReturnDateOnCalendar() throws ParseException {
+        clickElement(CalendarDateRetXpath(TestData.TripDetails.returnDate));
     }
 
     public void clickSearch() {
@@ -69,8 +83,6 @@ public class SkyscannerComponents extends Utility {
         }
     }
 
-
-
     public String findMonthString(String departureDate) {
         String month = departureDate.substring(3, 5);
         int intMonth = Integer.parseInt(month);
@@ -79,16 +91,10 @@ public class SkyscannerComponents extends Utility {
     }
 
     public String selectMonthForDeparture() {
-
-        String monthString = findMonthString(TestData.TripDetails.departureDate);
-
         for (int i = 0; i < 12; i++) {
-            String currentMonth = firefoxBrowser.findElement(By.cssSelector("[class='current']")).getText();
-            if (!(currentMonth.contains(monthString))) {
-                //click("button[class='next']");
-
-                Utility.clickElement(".//*[@class='calendar-info-bar datepicker_clearfix']/button[2]");
-                i++;
+            String currentMonth = findElement("[class='current']").getText();
+            if (!(currentMonth.contains(deptMonthString))) {
+                clickElement(".//*[@class='calendar-info-bar datepicker_clearfix']/button[2]");
             }
         }
         String selectedMonth = firefoxBrowser.findElement(By.cssSelector("[class='current']")).getText();
@@ -96,23 +102,19 @@ public class SkyscannerComponents extends Utility {
     }
 
 
-    public void selectMonthRet(String xpathString) {
-        String monthString = findMonthString(TestData.TripDetails.returnDate);
-        String currentMonth = firefoxBrowser.findElement(By.xpath(xpathString)).getText();
-        if (!(currentMonth.equals(monthString))) {
+    public void selectMonthRet(String path) {
+        String currentMonth = findElement(path).getText();
+        if (!(currentMonth.equals(returnMonthString))) {
             for (int i = 0; i < 12; i++) {
-                String newCurrentMonth = firefoxBrowser.findElement(By.xpath(xpathString)).getText();
-                if (!(newCurrentMonth.contains(monthString))) {
-                    //click("button[class='next']");
-
-                    Utility.clickElement("(.//*[@class='calendar-info-bar datepicker_clearfix'])[2]/button[2]");
-                    i++;
+                String newCurrentMonth = findElement(path).getText();
+                if (!(newCurrentMonth.contains(returnMonthString))) {
+                    clickElement("(.//*[@class='calendar-info-bar datepicker_clearfix'])[2]/button[2]");
                 }
             }
         }
     }
 
-    public String newDateFormat(String oldDate) throws ParseException {
+    public static String newDateFormat(String oldDate) throws ParseException {
         SimpleDateFormat newDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date myDate = newDateFormat.parse(oldDate);
         newDateFormat.applyPattern("yyyy-MM-dd");
@@ -127,20 +129,25 @@ public class SkyscannerComponents extends Utility {
 
     //clickXpath(CalendarDateReturnSameMonthXpath(TripDetails.returnDate));
 
-    public String CalendarDateRetXpath(String date, String deptMonth) throws ParseException {
-        String monthString = findMonthString(TestData.TripDetails.returnDate);
-        if ((deptMonth.contains(monthString))) {
-            String xpath = "(.//*[@data-id='" + newDateFormat(date) + "'])[2]";
-            return xpath;
-        } else {
-            String xpath = ".//*[@data-id='" + newDateFormat(date) + "']";
-            return xpath;
-        }
+    public String xpathReturnDate(String date, String deptMonth) throws ParseException {
 
+        String xpath = ".//*[@data-id='" + newDateFormat(date) + "']";
+        firefoxBrowser.findElements(By.xpath(xpath)).size();
+        return xpath;
+    }
+
+    public String CalendarDateRetXpath(String date) throws ParseException {
+        String xpathForSingleIncident = ".//*[@data-id='" + newDateFormat(date) + "']";
+        if ((firefoxBrowser.findElements(By.xpath(xpathForSingleIncident)).size())==2) {
+            String xpathForDoubleIncidents = "(.//*[@data-id='" + newDateFormat(date) + "'])[2]";
+            return xpathForDoubleIncidents;
+        } else {
+            return xpathForSingleIncident;
+        }
     }
 
     public void sortFlightResultsByPrice() {
-        Select s = new Select(Utility.firefoxBrowser.findElement(By.id("sort-select")));
+        Select s = new Select(firefoxBrowser.findElement(By.id("sort-select")));
         s.selectByValue("price");
     }
 }

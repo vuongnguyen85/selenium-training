@@ -15,13 +15,14 @@ public class Scenarios {
         skyscanner.selectDestinationCityInDropdown();
     }
 
-    public void selectDates(String departureDate, String returnDate) throws ParseException{
+    public void selectDates(String departureDate, String returnDate) throws ParseException {
         SkyscannerComponents skyscanner = new SkyscannerComponents();
         skyscanner.clickDepartureDateTextField();
-        String deptMonth = skyscanner.selectMonthForDeparture();
+        skyscanner.selectMonthForDeparture();
         skyscanner.selectDepartureDateOnCalendar();
         skyscanner.clickReturnDateTextField();
         skyscanner.selectMonthForReturnDate();
-        skyscanner.selectReturnDateOnCalendar(deptMonth);
+        skyscanner.selectReturnDateOnCalendar();
+        skyscanner.selectNoOfPassengers();
     }
 }
