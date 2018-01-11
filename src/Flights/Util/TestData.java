@@ -25,10 +25,12 @@ public class TestData {
     }
 
     public class SkyScannerData {
-        public static final String cssOrigin = "#js-origin-input";
-        public static final String cssDestination = "#js-destination-input";
-        public static final String cssDepartureDate = "#js-depart-input";
-        public static final String cssTravellers = "#js-trad-cabin-class-travellers-toggle";
+        public static final String SSOrigin = "#js-origin-input";
+        public static final String SSDestination = "#js-destination-input";
+        public static final String SSDepartureDate = "#js-depart-input";
+        public static final String SSTravellers = "#js-trad-cabin-class-travellers-toggle";
+        public static final String SSIncrementAdults = "[class='increment adults']";
+        public static final String SSNextArrowOnReturnCalendar = "(.//*[@class='calendar-info-bar datepicker_clearfix'])[2]/button[2]";
 
     }
 }

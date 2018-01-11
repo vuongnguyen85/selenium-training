@@ -22,7 +22,7 @@ public class Skyscanner {
 
         skyscanner.firefoxBrowser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         WebDriverWait d = new WebDriverWait(Utility.firefoxBrowser, 60); //explicit wait
-        d.until(ExpectedConditions.elementToBeClickable(By.cssSelector(TestData.SkyScannerData.cssOrigin)));
+        d.until(ExpectedConditions.elementToBeClickable(By.cssSelector(TestData.SkyScannerData.SSOrigin)));
 
         scenario.enterCityDetails(TestData.TripDetails.originCity,TestData.TripDetails.destinationCity);
         scenario.selectDates(TestData.TripDetails.departureDate, TestData.TripDetails.returnDate);

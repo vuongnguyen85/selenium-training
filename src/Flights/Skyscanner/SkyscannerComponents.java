@@ -16,20 +16,20 @@ public class SkyscannerComponents extends Utility {
 
     public void selectNoOfPassengers() {
 
-        clickElement(TestData.SkyScannerData.cssTravellers);
+        clickElement(TestData.SkyScannerData.SSTravellers);
         int i = TestData.TripDetails.noOfAdults;
         for (int j=1;j<=i-1;j++) {
-            clickElement("[class='increment adults']");
+            clickElement(TestData.SkyScannerData.SSIncrementAdults);
         }
-        clickElement(TestData.SkyScannerData.cssTravellers);
+        clickElement(TestData.SkyScannerData.SSTravellers);
     }
 
     public void clearOriginCityTextField() {
-        findElement(TestData.SkyScannerData.cssOrigin).clear();
+        findElement(TestData.SkyScannerData.SSOrigin).clear();
     }
 
     public void enterOriginCityInTextField() {
-        enterText(TestData.SkyScannerData.cssOrigin, TestData.TripDetails.originCity);
+        enterText(TestData.SkyScannerData.SSOrigin, TestData.TripDetails.originCity);
     }
 
     public void selectOriginCityInDropdown() {
@@ -37,7 +37,7 @@ public class SkyscannerComponents extends Utility {
     }
 
     public void enterDestinationCityInTextField() {
-        enterText(TestData.SkyScannerData.cssDestination, TestData.TripDetails.destinationCity);
+        enterText(TestData.SkyScannerData.SSDestination, TestData.TripDetails.destinationCity);
     }
 
     public void selectDestinationCityInDropdown() {
@@ -45,7 +45,7 @@ public class SkyscannerComponents extends Utility {
     }
 
     public void clickDepartureDateTextField() {
-        clickElement(TestData.SkyScannerData.cssDepartureDate);
+        clickElement(TestData.SkyScannerData.SSDepartureDate);
     }
 
     public void selectDepartureDateOnCalendar() throws ParseException {
@@ -77,12 +77,18 @@ public class SkyscannerComponents extends Utility {
 
         switch (LCAirline) {
             case "emirates":
-                clickElement(".//*[@data-id='-32348']/label/input");
+                clickElement(airlineFilterPath(32348));
                 break;
             case "qatar":
-                clickElement(".//*[@data-id='-31939']/label/input");
+                clickElement(airlineFilterPath(31939));
                 break;
         }
+    }
+
+    private String airlineFilterPath(int airlineFilterId) {
+        String StringAirlineId = Integer.toString(airlineFilterId);
+        String fullPath = ".//*[@data-id='-" + StringAirlineId + "']/label/input";
+        return fullPath;
     }
 
     public String findMonthString(String departureDate) {
@@ -110,7 +116,7 @@ public class SkyscannerComponents extends Utility {
             for (int i = 0; i < 12; i++) {
                 String newCurrentMonth = findElement(path).getText();
                 if (!(newCurrentMonth.contains(returnMonthString))) {
-                    clickElement("(.//*[@class='calendar-info-bar datepicker_clearfix'])[2]/button[2]");
+                    clickElement(TestData.SkyScannerData.SSNextArrowOnReturnCalendar);
                 }
             }
         }
@@ -130,13 +136,6 @@ public class SkyscannerComponents extends Utility {
     }
 
     //clickXpath(CalendarDateReturnSameMonthXpath(TripDetails.returnDate));
-
-    public String xpathReturnDate(String date, String deptMonth) throws ParseException {
-
-        String xpath = ".//*[@data-id='" + newDateFormat(date) + "']";
-        firefoxBrowser.findElements(By.xpath(xpath)).size();
-        return xpath;
-    }
 
     public String CalendarDateRetXpath(String date) throws ParseException {
         String xpathForSingleIncident = ".//*[@data-id='" + newDateFormat(date) + "']";

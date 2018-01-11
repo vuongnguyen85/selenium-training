@@ -6,7 +6,7 @@ import Flights.Skyscanner.SkyscannerComponents;
 import java.text.ParseException;
 
 
-public class Main {
+public class FlightsMain {
     public static void main(String[] args) throws InterruptedException, ParseException{
         Skyscanner skyscanner = new Skyscanner();
         SkyscannerComponents SSComponent = new SkyscannerComponents();

@@ -13,8 +13,8 @@ public class Utility {
 
     public void calculateScriptDuration() {
         long endTime = System.currentTimeMillis();
-        long totalTime = endTime - startTime;
-        System.out.println(totalTime + " milliseconds taken to complete script");
+        long totalTime = (endTime - startTime)/1000;
+        System.out.println(totalTime + " Seconds taken to complete script");
     }
 
     public static void openFirefoxBrowser(String url) {
