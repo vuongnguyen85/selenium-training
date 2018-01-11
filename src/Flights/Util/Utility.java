@@ -1,4 +1,4 @@
-package Flights;
+package Flights.Util;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

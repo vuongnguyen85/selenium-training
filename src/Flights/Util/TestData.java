@@ -1,13 +1,13 @@
-package Flights;
+package Flights.Util;
 
 public class TestData {
 
         public class TripDetails {
         public static final String originCity = "london";
-        public static final String destinationCity = "hong kong";
-        public static final String departureDate = "07/07/2018";
-        public static final String returnDate = "22/07/2018";
-        public static final int noOfAdults = 3; // can't be 0, default selects 1
+        public static final String destinationCity = "venice";
+        public static final String departureDate = "06/04/2018";
+        public static final String returnDate = "09/04/2018";
+        public static final int noOfAdults = 2; // can't be 0, default selects 1
         public static final int noOfChildrens = 0;
         }
 

@@ -1,4 +1,4 @@
-package Flights;
+package Flights.Skyscanner;
 
 import java.text.ParseException;
 

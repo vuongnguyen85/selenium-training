@@ -1,3 +1,5 @@
+package Training;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,5 +36,14 @@ public class SwitchWindows {
         WebElement target = firefoxBrowser.findElement(By.id("b"));
 
         a.dragAndDrop(source,target).build().perform(); // can then use drag and drop within the iframe
+
+        firefoxBrowser.switchTo().defaultContent(); //remember to use to switch back to main window
+
+        //total number of links on a page
+        System.out.println("Total number of links on a page is " + firefoxBrowser.findElements(By.tagName("a")).size());
+
+        //total number of links on a footer
+        WebElement footer = firefoxBrowser.findElement(By.xpath("some id"));
+        System.out.println("Total number of links on the footer is " + footer.findElements(By.tagName("a")).size());
     }
 }

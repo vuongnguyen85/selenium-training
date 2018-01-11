@@ -1,5 +1,7 @@
-package Flights;
+package Flights.Skyscanner;
 
+import Flights.Util.TestData;
+import Flights.Util.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 import java.text.DateFormatSymbols;
