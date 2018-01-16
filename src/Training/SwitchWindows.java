@@ -45,5 +45,21 @@ public class SwitchWindows {
         //total number of links on a footer
         WebElement footer = firefoxBrowser.findElement(By.xpath("some id"));
         System.out.println("Total number of links on the footer is " + footer.findElements(By.tagName("a")).size());
+
+        for (int i=0;i<footer.findElements(By.tagName("a")).size();i++) {
+            // get the name of the link iteratively
+            //System.out.println(footer.findElements(By.tagName("a")).get(i).getText());
+
+            if (footer.findElements(By.tagName("a")).get(i).getText().contains("some text")) {
+                // this will find a link titled "some text" and then click on this link
+                footer.findElements(By.tagName("a")).get(i).click();
+            }
+
+            //dynamic calendar
+            // can use findelements method and select a common classname and iterate through using a for loop
+            // use if .equals("day") and get(i).click() only when if statement is true
+
+
+        }
     }
 }

@@ -45,7 +45,7 @@ public class Browser {
             System.out.println("Test Pass");
         } else {
             System.out.println("Test Fail");
-        };
+        }
 
         //firefoxBrowser.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 

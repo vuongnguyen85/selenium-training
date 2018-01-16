@@ -16,20 +16,20 @@ public class SkyscannerComponents extends Utility {
 
     public void selectNoOfPassengers() {
 
-        clickElement(TestData.SkyScannerData.SSTravellers);
+        clickElement(TestData.SkyScannerData.TravellersField);
         int i = TestData.TripDetails.noOfAdults;
         for (int j=1;j<=i-1;j++) {
-            clickElement(TestData.SkyScannerData.SSIncrementAdults);
+            clickElement(TestData.SkyScannerData.IncrementAdultsButton);
         }
-        clickElement(TestData.SkyScannerData.SSTravellers);
+        clickElement(TestData.SkyScannerData.TravellersField);
     }
 
     public void clearOriginCityTextField() {
-        findElement(TestData.SkyScannerData.SSOrigin).clear();
+        findElement(TestData.SkyScannerData.OriginCityField).clear();
     }
 
     public void enterOriginCityInTextField() {
-        enterText(TestData.SkyScannerData.SSOrigin, TestData.TripDetails.originCity);
+        enterText(TestData.SkyScannerData.OriginCityField, TestData.TripDetails.originCity);
     }
 
     public void selectOriginCityInDropdown() {
@@ -37,7 +37,7 @@ public class SkyscannerComponents extends Utility {
     }
 
     public void enterDestinationCityInTextField() {
-        enterText(TestData.SkyScannerData.SSDestination, TestData.TripDetails.destinationCity);
+        enterText(TestData.SkyScannerData.DestinationCityField, TestData.TripDetails.destinationCity);
     }
 
     public void selectDestinationCityInDropdown() {
@@ -45,7 +45,7 @@ public class SkyscannerComponents extends Utility {
     }
 
     public void clickDepartureDateTextField() {
-        clickElement(TestData.SkyScannerData.SSDepartureDate);
+        clickElement(TestData.SkyScannerData.DepartureDateField);
     }
 
     public void selectDepartureDateOnCalendar() throws ParseException {
@@ -65,7 +65,7 @@ public class SkyscannerComponents extends Utility {
     }
 
     public void clickSearch() {
-        clickElement("[class='fss-bpk-button fss-bpk-button--large js-search-button']");
+        clickElement(TestData.SkyScannerData.SearchButton);
     }
 
     public void clearAllAirlineFilters() {
@@ -111,12 +111,12 @@ public class SkyscannerComponents extends Utility {
 
 
     public void selectMonthRet(String path) {
-        String currentMonth = findElement(path).getText();
-        if (!(currentMonth.equals(returnMonthString))) {
+        String currentMonthYear = findElement(path).getText();
+        if (!(currentMonthYear.equals(returnMonthString))) {
             for (int i = 0; i < 12; i++) {
-                String newCurrentMonth = findElement(path).getText();
-                if (!(newCurrentMonth.contains(returnMonthString))) {
-                    clickElement(TestData.SkyScannerData.SSNextArrowOnReturnCalendar);
+                String newCurrentMonthYear = findElement(path).getText();
+                if (!(newCurrentMonthYear.contains(returnMonthString))) {
+                    clickElement(TestData.SkyScannerData.NextArrowOnReturnCalendar);
                 }
             }
         }

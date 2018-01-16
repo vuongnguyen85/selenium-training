@@ -1,4 +1,4 @@
-package Flights.Util;
+package AmazonPrice.Util;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -9,22 +9,16 @@ import org.openqa.selenium.support.ui.Select;
 
 public class Utility {
     public static long startTime;
-    public static WebDriver firefoxBrowser;
-
-
-    public static WebDriver openFirefox() {
-        System.setProperty("webdriver.gecko.driver", "//Users//vuongnguyen//dev//WebDriver//geckodriver");
-        firefoxBrowser = new FirefoxDriver();
-        return firefoxBrowser;
-        }
+    public static WebDriver firefoxBrowser = new FirefoxDriver();
 
     public void calculateScriptDuration() {
         long endTime = System.currentTimeMillis();
         long totalTime = (endTime - startTime)/1000;
         System.out.println(totalTime + " Seconds taken to complete script");
+
     }
 
-    public static void enterURL(String url) {
+    public static void openFirefoxBrowser(String url) {
         startTime = System.currentTimeMillis();
         firefoxBrowser.get(url);
     }
@@ -53,9 +47,4 @@ public class Utility {
         findElement(path).sendKeys(textEntry);
     }
 
-    public static void noOfTravellersExp(int number) {
-        Select s = new Select(firefoxBrowser.findElement(By.id("flight-adults-hp-flight")));
-        String s1 = Integer.toString(number);
-        s.selectByValue(s1);
-    }
 }

@@ -18,11 +18,12 @@ public class Skyscanner {
         SkyscannerComponents skyscanner = new SkyscannerComponents();
         Scenarios scenario = new Scenarios();
 
-        skyscanner.openFirefoxBrowser("http://skyscanner.net");
+        skyscanner.openFirefox();
+        skyscanner.enterURL("http://skyscanner.net");
 
         skyscanner.firefoxBrowser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         WebDriverWait d = new WebDriverWait(Utility.firefoxBrowser, 60); //explicit wait
-        d.until(ExpectedConditions.elementToBeClickable(By.cssSelector(TestData.SkyScannerData.SSOrigin)));
+        d.until(ExpectedConditions.elementToBeClickable(By.cssSelector(TestData.SkyScannerData.OriginCityField)));
 
         scenario.enterCityDetails(TestData.TripDetails.originCity,TestData.TripDetails.destinationCity);
         scenario.selectDates(TestData.TripDetails.departureDate, TestData.TripDetails.returnDate);
