@@ -12,8 +12,8 @@ public class Expedia extends TestData {
     public static void main(String[] args) throws InterruptedException {
         long startTime = System.currentTimeMillis();
 
-        Utility.openFirefox();
-        Utility.enterURL("http://expedia.co.uk");
+        Utility.openFirefox("http://expedia.co.uk");
+        //Utility.enterURL("http://expedia.co.uk");
         Utility.firefoxBrowser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         Actions a = new Actions(Utility.firefoxBrowser);
         Utility.clickElement(ExpediaData.FlightTab);

@@ -18,8 +18,8 @@ public class Skyscanner {
         SkyscannerComponents skyscanner = new SkyscannerComponents();
         Scenarios scenario = new Scenarios();
 
-        skyscanner.openFirefox();
-        skyscanner.enterURL("http://skyscanner.net");
+        skyscanner.openFirefox("http://skyscanner.net");
+        //skyscanner.enterURL("http://skyscanner.net");
 
         skyscanner.firefoxBrowser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         WebDriverWait d = new WebDriverWait(Utility.firefoxBrowser, 60); //explicit wait

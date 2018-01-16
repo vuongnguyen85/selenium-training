@@ -12,9 +12,11 @@ public class Utility {
     public static WebDriver firefoxBrowser;
 
 
-    public static WebDriver openFirefox() {
+    public static WebDriver openFirefox(String url) {
         System.setProperty("webdriver.gecko.driver", "//Users//vuongnguyen//dev//WebDriver//geckodriver");
         firefoxBrowser = new FirefoxDriver();
+        startTime = System.currentTimeMillis();
+        firefoxBrowser.get(url);
         return firefoxBrowser;
         }
 
@@ -22,11 +24,6 @@ public class Utility {
         long endTime = System.currentTimeMillis();
         long totalTime = (endTime - startTime)/1000;
         System.out.println(totalTime + " Seconds taken to complete script");
-    }
-
-    public static void enterURL(String url) {
-        startTime = System.currentTimeMillis();
-        firefoxBrowser.get(url);
     }
 
     public static WebElement findElement(String path) {
