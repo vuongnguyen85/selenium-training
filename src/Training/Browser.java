@@ -4,16 +4,28 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
 public class Browser {
-    public static void main(String[] args)  {
 
-        WebDriver firefoxBrowser = new FirefoxDriver();
+    public static WebDriver firefoxBrowser;
+
+    public static WebDriver openFirefox(String url) {
+        System.setProperty("webdriver.gecko.driver", "//Users//vuongnguyen//dev//WebDriver//geckodriver");
+        firefoxBrowser = new FirefoxDriver();
+        firefoxBrowser.get(url);
+        return firefoxBrowser;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+
+
         //WebDriver chromeBrowser = new ChromeDriver();
 
-        firefoxBrowser.get("https://application.adthena.com/");
+        openFirefox("https://application.adthena.com/");
 
 
         // CLASS NAME
@@ -29,7 +41,8 @@ public class Browser {
         // finding linked text on the page, us text between <a> </a>
 
         // XPATH
-        firefoxBrowser.findElement(By.xpath("//*[@id=\"login-form\"]/div[3]/button")).click();
+        Thread.sleep(3000l);
+        firefoxBrowser.findElement(By.cssSelector("[class='btn btn-highlight']")).click();
         //inspect element, right click and select copy > xpath
         //may need to change double quote to single quote due to syntax error in java
         // (firefox) any xpath which starts with html is not reliable and shouldn't be used, check in chrome
@@ -41,11 +54,7 @@ public class Browser {
 
         // Failing to login
 
-        if (firefoxBrowser.findElement(By.id("js-pswd")).getText().equals("Username or password cannot be found. Please try again.")) {
-            System.out.println("Test Pass");
-        } else {
-            System.out.println("Test Fail");
-        }
+
 
         //firefoxBrowser.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
@@ -54,4 +63,17 @@ public class Browser {
 
         //firefoxBrowser.close();
     }
-}
+
+    @Test
+    public void LoginTest() {
+
+        openFirefox("https://application.adthena.com/");
+        firefoxBrowser.findElement(By.id("username")).sendKeys("vuong.nguyen@adthena.com");
+        firefoxBrowser.findElement(By.xpath("//*[@id=\"login-form\"]/div[2]/div/div/div/div/input")).sendKeys("vuong");
+        firefoxBrowser.findElement(By.cssSelector("[class='btn btn-highlight']")).click();
+
+        Assert.assertEquals(firefoxBrowser.findElement(By.id("js-pswd")).getText(),"Username or password cannot be found. Please try again.");
+        firefoxBrowser.quit();
+        }
+    }
+
