@@ -1,7 +1,5 @@
 package Flights.Skyscanner;
 
-import Flights.Util.TestData;
-import Flights.Util.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 import java.text.DateFormatSymbols;
@@ -9,27 +7,31 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SkyscannerComponents extends Utility {
+import static Flights.Util.TestData.TripDetails.*;
+import static Flights.Util.Utility.*;
+import static Flights.Util.TestData.SkyScannerData.*;
 
-    String deptMonthString = findMonthString(TestData.TripDetails.departureDate);
-    String returnMonthString = findMonthString(TestData.TripDetails.returnDate);
+public class SkyscannerComponents  {
+
+    String deptMonthString = findMonthString(departureDate);
+    String returnMonthString = findMonthString(returnDate);
 
     public void selectNoOfPassengers() {
 
-        clickElement(TestData.SkyScannerData.TravellersField);
-        int i = TestData.TripDetails.noOfAdults;
+        clickElement(TravellersField);
+        int i = noOfAdults;
         for (int j=1;j<=i-1;j++) {
-            clickElement(TestData.SkyScannerData.IncrementAdultsButton);
+            clickElement(IncrementAdultsButton);
         }
-        clickElement(TestData.SkyScannerData.TravellersField);
+        clickElement(TravellersField);
     }
 
     public void clearOriginCityTextField() {
-        findElement(TestData.SkyScannerData.OriginCityField).clear();
+        findElement(OriginCityField).clear();
     }
 
     public void enterOriginCityInTextField() {
-        enterText(TestData.SkyScannerData.OriginCityField, TestData.TripDetails.originCity);
+        enterText(OriginCityField, originCity);
     }
 
     public void selectOriginCityInDropdown() {
@@ -37,7 +39,7 @@ public class SkyscannerComponents extends Utility {
     }
 
     public void enterDestinationCityInTextField() {
-        enterText(TestData.SkyScannerData.DestinationCityField, TestData.TripDetails.destinationCity);
+        enterText(DestinationCityField, destinationCity);
     }
 
     public void selectDestinationCityInDropdown() {
@@ -45,11 +47,11 @@ public class SkyscannerComponents extends Utility {
     }
 
     public void clickDepartureDateTextField() {
-        clickElement(TestData.SkyScannerData.DepartureDateField);
+        clickElement(DepartureDateField);
     }
 
     public void selectDepartureDateOnCalendar() throws ParseException {
-        clickElement(CalendarDateDeptXpath(TestData.TripDetails.departureDate));
+        clickElement(CalendarDateDeptXpath(departureDate));
     }
 
     public void clickReturnDateTextField() {
@@ -61,11 +63,11 @@ public class SkyscannerComponents extends Utility {
     }
 
     public void selectReturnDateOnCalendar() throws ParseException {
-        clickElement(CalendarDateRetXpath(TestData.TripDetails.returnDate));
+        clickElement(CalendarDateRetXpath(returnDate));
     }
 
     public void clickSearch() {
-        clickElement(TestData.SkyScannerData.SearchButton);
+        clickElement(SearchButton);
     }
 
     public void clearAllAirlineFilters() {
@@ -116,7 +118,7 @@ public class SkyscannerComponents extends Utility {
             for (int i = 0; i < 12; i++) {
                 String newCurrentMonthYear = findElement(path).getText();
                 if (!(newCurrentMonthYear.contains(returnMonthString))) {
-                    clickElement(TestData.SkyScannerData.NextArrowOnReturnCalendar);
+                    clickElement(NextArrowOnReturnCalendar);
                 }
             }
         }

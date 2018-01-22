@@ -11,7 +11,6 @@ public class Utility {
     public static long startTime;
     public static WebDriver firefoxBrowser;
 
-
     public static WebDriver openFirefox(String url) {
         System.setProperty("webdriver.gecko.driver", "//Users//vuongnguyen//dev//WebDriver//geckodriver");
         firefoxBrowser = new FirefoxDriver();
@@ -20,7 +19,7 @@ public class Utility {
         return firefoxBrowser;
         }
 
-    public void calculateScriptDuration() {
+    public static void calculateScriptDuration() {
         long endTime = System.currentTimeMillis();
         long totalTime = (endTime - startTime)/1000;
         System.out.println(totalTime + " Seconds taken to complete script");

@@ -2,7 +2,6 @@ package Flights;
 
 import Flights.Skyscanner.Skyscanner;
 import Flights.Skyscanner.SkyscannerComponents;
-
 import java.text.ParseException;
 
 
@@ -10,7 +9,6 @@ public class FlightsMain {
     public static void main(String[] args) throws InterruptedException, ParseException{
         Skyscanner skyscanner = new Skyscanner();
         SkyscannerComponents SSComponent = new SkyscannerComponents();
-
 
         //-----------------
         //run on Skyscanner
@@ -28,11 +26,5 @@ public class FlightsMain {
         //-----------------
         //run on Ryanair
 
-
-
-
-
     }
-
-
 }
