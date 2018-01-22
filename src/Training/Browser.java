@@ -2,10 +2,17 @@ package Training;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.io.File;
+import java.io.IOException;
+
+import static org.apache.commons.io.FileUtils.copyFile;
 
 public class Browser {
 
@@ -63,7 +70,7 @@ public class Browser {
     }
 
     @Test
-    public void LoginTest() {
+    public void FailedLogin() throws IOException, InterruptedException {
 
         openFirefox("https://application.adthena.com/");
         firefoxBrowser.findElement(By.id("username")).sendKeys("vuong.nguyen@adthena.com");
@@ -71,7 +78,29 @@ public class Browser {
         firefoxBrowser.findElement(By.cssSelector("[class='btn btn-highlight']")).click();
 
         Assert.assertEquals(firefoxBrowser.findElement(By.id("js-pswd")).getText(),"Username or password cannot be found. Please try again.");
+
+        Thread.sleep(500l);
+        File src = ((TakesScreenshot)firefoxBrowser).getScreenshotAs(OutputType.FILE);
+        copyFile(src,new File("//Users//vuongnguyen//dev//FailedLogin.png"));
+
         firefoxBrowser.quit();
         }
+
+    @Test
+    public void SuccessfulLogin() throws IOException, InterruptedException {
+
+        openFirefox("https://application.adthena.com/");
+        firefoxBrowser.findElement(By.id("username")).sendKeys("vuong.nguyen@adthena.com");
+        firefoxBrowser.findElement(By.xpath("//*[@id=\"login-form\"]/div[2]/div/div/div/div/input")).sendKeys("vuong2410");
+        firefoxBrowser.findElement(By.cssSelector("[class='btn btn-highlight']")).click();
+
+        Thread.sleep(5000l);
+        Assert.assertEquals(firefoxBrowser.findElement(By.cssSelector("[class='page-header clearfix']")).getText(),"Summary Dashboard");
+
+        File src = ((TakesScreenshot)firefoxBrowser).getScreenshotAs(OutputType.FILE);
+        copyFile(src,new File("//Users//vuongnguyen//dev//SuccessfulLogin.png"));
+
+        firefoxBrowser.quit();
     }
+}
 
