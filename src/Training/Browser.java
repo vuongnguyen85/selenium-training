@@ -74,7 +74,7 @@ public class Browser {
 
         openFirefox("https://application.adthena.com/");
         firefoxBrowser.findElement(By.id("username")).sendKeys("vuong.nguyen@adthena.com");
-        firefoxBrowser.findElement(By.xpath("//*[@id=\"login-form\"]/div[2]/div/div/div/div/input")).sendKeys("vuong");
+        firefoxBrowser.findElement(By.cssSelector("[name='password']")).sendKeys("vuong");
         firefoxBrowser.findElement(By.cssSelector("[class='btn btn-highlight']")).click();
 
         Assert.assertEquals(firefoxBrowser.findElement(By.id("js-pswd")).getText(),"Username or password cannot be found. Please try again.");
@@ -91,7 +91,8 @@ public class Browser {
 
         openFirefox("https://application.adthena.com/");
         firefoxBrowser.findElement(By.id("username")).sendKeys("vuong.nguyen@adthena.com");
-        firefoxBrowser.findElement(By.xpath("//*[@id=\"login-form\"]/div[2]/div/div/div/div/input")).sendKeys("vuong2410");
+        firefoxBrowser.findElement(By.cssSelector("[name='password']")).sendKeys("vuong2410");
+        //firefoxBrowser.findElement(By.xpath("//*[@id=\"login-form\"]/div[2]/div/div/div/div/input")).sendKeys("vuong2410");
         firefoxBrowser.findElement(By.cssSelector("[class='btn btn-highlight']")).click();
 
         Thread.sleep(5000l);
